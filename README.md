@@ -17,10 +17,9 @@
 - **ddddocr**：算术验证码识别（含图像预处理与映射规则）
 
 ## 项目结构
-
-CompanyStandardLookup/
+```
+SignalSearch-Automation/
 ├── main.py # 主入口
-├── config.py # 本地配置（不提交）
 ├── config.example.py # 配置模板
 ├── requirements.txt
 ├── pages/
@@ -29,8 +28,7 @@ CompanyStandardLookup/
 └── utils/
 ├── captcha.py # 验证码识别（ddddocr + 图像预处理）
 └── excel_helper.py # Excel 读写
-text
-
+```
 
 ## 核心功能
 
@@ -56,26 +54,28 @@ text
 
 ```bash
 pip install -r requirements.txt
+```
 
-使用
+## 使用
 
-    复制配置模板并填写真实信息：
-    bash
+复制配置模板并填写真实信息：
+```bash
+copy config.example.py config.py
+```
+编辑 config.py，填入登录 URL、账号、Excel 路径、VIN 等。
 
-    copy config.example.py config.py
+关闭要写入的 Excel 文件（openpyxl 无法写入已打开的文件）。
 
-    编辑 config.py，填入登录 URL、账号、Excel 路径、VIN 等。
 
-    关闭要写入的 Excel 文件（openpyxl 无法写入已打开的文件）。
+## 运行：
+```bash
+python main.py
+```
+脚本会将 PASS / FAIL 写回原 Excel 的 RESULT_COLUMN 列。
 
-    运行：
-    bash
 
-    python main.py
-
-    脚本会将 PASS / FAIL 写回原 Excel 的 RESULT_COLUMN 列。
-
-配置说明
+## 配置说明
+```
 字段	说明
 LOGIN_URL / SEARCH_PAGE_URL	登录页与查询页 URL
 USERNAME / PASSWORD	登录账号
@@ -88,7 +88,9 @@ VIN	查询条件
 QUERY_WAIT	点击查询后等待秒数
 CAPTCHA_MAX_RETRY	验证码最大重试次数
 HEADLESS	是否无头运行
-亮点
+```
+
+## 亮点
 
     数据驱动：关键词来源于 Excel，无需改代码
 
